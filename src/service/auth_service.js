@@ -12,8 +12,15 @@ class AuthService {
     // const authProvider = new firebase.auth.GoogleAuthProvider();
     return firebaseApp.auth().signInWithPopup(authProvider);
   }
-  test() {
-    return "test";
+
+  logout() {
+    firebase.auth().signOut();
+  }
+
+  onAuthChange(onUserChanged) {
+    firebase.auth().onAuthStateChanged((user) => {
+      onUserChanged(user);
+    });
   }
 }
 
